@@ -12,11 +12,53 @@ a {
 
 button {
   cursor: pointer;
+  background: transparent;
 }
 
 .container {
-  max-width: 1272px;
-  padding: 0 16px;
   width: 100%;
+  max-width: 1272px;
+  padding: 0px 16px;
   margin: 0 auto;
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: 48px;
+  color: #000;
+  text-align: center;
+  padding-bottom: 50px;
+
+  @media (max-width: 600px) {
+    font-size: 28px;
+    padding-bottom: 30px;
+  }
+}
+
+.view-all__btn {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.6px;
+  padding: 15px 80px;
+  border-radius: 60px;
+  border: 1px solid #ddd;
+  margin: 50px auto;
+  position: relative;
+  overflow: hidden;
+  color: #000;
+  transition: .4s;
+
+
+
+  &:hover {
+    color: #fff;
+
+    background: black;
+  }
+
+  @media (max-width: 600px) {
+    margin: 30px auto;
+    padding: 8px 36px;
+  }
 }
