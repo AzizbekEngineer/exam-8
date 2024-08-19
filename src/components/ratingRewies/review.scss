@@ -1,0 +1,69 @@
+.review {
+    width: 100%;
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    &__card {
+        border: 1px solid #0000001A;
+        min-height: 240px;
+        border-radius: 20px;
+        padding: 28px 30px;
+    }
+
+    &__stars {
+        display: flex;
+        gap: 8px;
+
+        svg {
+            color: orange;
+        }
+    }
+
+    &__info {
+        padding: 15px 0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    &__name {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 22px;
+        color: #000000;
+    }
+
+    &__icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #01AB31;
+        display: grid;
+        place-items: center;
+
+        svg {
+            font-size: 14px;
+            color: white;
+        }
+    }
+
+    &__desc {
+        font-family: Satoshi;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        text-align: left;
+        color: #000000;
+        opacity: 60%;
+    }
+
+    @media (max-width:750px) {
+        &__cards {
+            grid-template-columns: 1fr;
+        }
+    }
+}

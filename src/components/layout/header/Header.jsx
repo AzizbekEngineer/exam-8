@@ -5,9 +5,11 @@ import { BsCart2 } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
+import { FaRegHeart } from "react-icons/fa";
 
 import "./header.scss";
 import Search from "../../search/Search";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [close, setClose] = useState(true);
@@ -44,7 +46,9 @@ const Header = () => {
             >
               <RxHamburgerMenu />
             </button>
-            <img src={logo} alt="" />
+            <NavLink to={"/"}>
+              <img src={logo} alt="" />
+            </NavLink>
           </div>
           <ul className={`header__nav__link ${show ? "header__show" : ""}`}>
             <li onClick={() => setShow(false)} className="header__nav__close">
@@ -62,7 +66,12 @@ const Header = () => {
             <div className="header__nav__btns-search">
               <IoSearchOutline />
             </div>
-            <BsCart2 />
+            <NavLink to={"/wishlist"}>
+              <FaRegHeart />
+            </NavLink>
+            <NavLink to={"/cart"}>
+              <BsCart2 />
+            </NavLink>
             <VscAccount />
           </div>
         </nav>
