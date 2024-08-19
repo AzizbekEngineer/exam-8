@@ -33,7 +33,7 @@ const Product = ({ product }) => {
             }}
           >
             {cartData.some((el) => el._id === product?._id) ? (
-              <FaShoppingCart color="#40bfff" />
+              <FaShoppingCart color="black" />
             ) : (
               <IoCartOutline />
             )}
