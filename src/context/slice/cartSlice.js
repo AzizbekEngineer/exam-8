@@ -9,18 +9,18 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, { payload }) => {
-      let index = state.value.findIndex((el) => el.id === payload.id);
+      let index = state.value.findIndex((el) => el._id === payload._id);
       if (index < 0) {
         state.value = [...state.value, { ...payload, amount: 1 }];
       }
       localStorage.setItem("cart", JSON.stringify(state.value));
     },
     remove: (state, { payload }) => {
-      state.value = state.value.filter((el) => el.id !== payload.id);
+      state.value = state.value.filter((el) => el._id !== payload._id);
       localStorage.setItem("cart", JSON.stringify(state.value));
     },
     increaseAmount: (state, { payload }) => {
-      let index = state.value.findIndex((el) => el.id === payload.id);
+      let index = state.value.findIndex((el) => el._id === payload._id);
       state.value = state.value.map((el, inx) => {
         if (index === inx) {
           return { ...el, amount: el.amount + 1 };
@@ -31,7 +31,7 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.value));
     },
     decreaseAmount: (state, { payload }) => {
-      let index = state.value.findIndex((el) => el.id === payload.id);
+      let index = state.value.findIndex((el) => el._id === payload._id);
       state.value = state.value.map((el, inx) => {
         return index === inx ? { ...el, amount: el.amount - 1 } : el;
       });

@@ -1,11 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Cart from "../../components/cart/Cart";
 
 const CartWrapper = () => {
-  const cartData = useSelector((state) => state.cart.value);
-  console.log(cartData);
-
-  return <div>CartWrapper</div>;
+  return (
+    <div>
+      <h2>CartWrapper</h2>
+      <Cart />
+    </div>
+  );
 };
 
 export default CartWrapper;
