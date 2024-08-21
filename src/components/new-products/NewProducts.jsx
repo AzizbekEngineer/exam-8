@@ -6,7 +6,7 @@ import { useGetProductsQuery } from "../../context/api/productApi";
 
 const NewProducts = () => {
   const { data } = useGetProductsQuery();
-  // console.log(data);
+  console.log(data);
 
   return (
     <section id="new">

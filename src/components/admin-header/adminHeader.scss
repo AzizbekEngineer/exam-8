@@ -1,0 +1,20 @@
+.admin__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__btn {
+        border: none;
+        background: transparent;
+    }
+
+    &__humburger {
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 18px;
+        color: black;
+    }
+}

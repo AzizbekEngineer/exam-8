@@ -72,7 +72,9 @@ const Header = () => {
             <NavLink to={"/cart"}>
               <BsCart2 />
             </NavLink>
-            <VscAccount />
+            <NavLink to={"/login"}>
+              <VscAccount />
+            </NavLink>
           </div>
         </nav>
       </header>
