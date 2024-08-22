@@ -1,31 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./login.scss";
 import { useNavigate } from "react-router-dom";
 import { useGetValue } from "../../hooks/useGetValue";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../context/slice/authSlice";
+import { useSignInMutation } from "../../context/api/adminApi";
 
 const initialState = {
-  username: "aziz04",
-  password: "12345678",
+  username: "",
+  password: "",
 };
 
 const Login = () => {
   const navigate = useNavigate();
+  const [login, { data, isSuccess }] = useSignInMutation();
   const { formData, handleChange } = useGetValue(initialState);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.username === "aziz04" && formData.password === "12345678") {
-      dispatch(setToken("token"));
-
-      navigate("/admin");
-    } else {
-      toast.error("Parol yoki username xato");
-    }
+    login(formData);
 
     console.log(formData);
   };
+  console.log(data);
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setToken(data?.payload?.token));
+      navigate("/admin/createProduct");
+    }
+  }, [isSuccess]);
   return (
     <div className="login">
       <div className="container login__container">

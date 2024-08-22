@@ -10,10 +10,12 @@ import { FaRegHeart } from "react-icons/fa";
 import "./header.scss";
 import Search from "../../search/Search";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [close, setClose] = useState(true);
   const [show, setShow] = useState(false);
+  let isLogin = useSelector((state) => state.auth.token);
   return (
     <>
       {close ? (
@@ -72,7 +74,7 @@ const Header = () => {
             <NavLink to={"/cart"}>
               <BsCart2 />
             </NavLink>
-            <NavLink to={"/login"}>
+            <NavLink to={isLogin ? "/admin/createProduct" : "/login"}>
               <VscAccount />
             </NavLink>
           </div>

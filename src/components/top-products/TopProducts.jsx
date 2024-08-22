@@ -5,7 +5,7 @@ import Products from "../products/Products";
 import { useGetProductsQuery } from "../../context/api/productApi";
 
 const TopProducts = () => {
-  const { data } = useGetProductsQuery();
+  const { data } = useGetProductsQuery({ limit: 4 });
 
   return (
     <section id="top">

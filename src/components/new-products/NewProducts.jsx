@@ -5,7 +5,7 @@ import Products from "../products/Products";
 import { useGetProductsQuery } from "../../context/api/productApi";
 
 const NewProducts = () => {
-  const { data } = useGetProductsQuery();
+  const { data } = useGetProductsQuery({ limit: 4 });
   console.log(data);
 
   return (

@@ -25,7 +25,7 @@ export const categoryAPi = api.injectEndpoints({
     }),
     deleteCategory: build.mutation({
       query: (id) => ({
-        url: `/categories/${id}`,
+        url: `/category/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Category"],
@@ -33,7 +33,7 @@ export const categoryAPi = api.injectEndpoints({
     updateCategory: build.mutation({
       query: ({ id, body }) => ({
         url: `/categories/${id}`,
-        method: "PUT", // or "PATCH"
+        method: "PUT",
         body,
       }),
       invalidatesTags: ["Category"],

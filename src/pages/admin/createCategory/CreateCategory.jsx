@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./createCategory.scss";
-import { useCreateCategoryMutation } from "../../../context/api/categoryApi";
 import { useGetValue } from "../../../hooks/useGetValue";
 import { useNavigate } from "react-router-dom";
+import { useCreateCategoryMutation } from "../../../context/api/categoryApi";
 
 const initialState = {
   title: "",
@@ -18,7 +18,7 @@ const CreateCategory = () => {
     createCategory(formData);
     console.log(formData);
     setFormData(initialState);
-    navigate("/admin/manageCategory");
+    // navigate("/admin/manageCategory");
   };
 
   return (

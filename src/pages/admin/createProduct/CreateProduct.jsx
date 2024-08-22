@@ -1,87 +1,165 @@
 import React, { useEffect, useState } from "react";
+import { Button, Form, Input, Upload, Select } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import { useCreateProductMutation } from "../../../context/api/productApi";
+import { useGetCategoryQuery } from "../../../context/api/categoryApi";
 import "./createProduct.scss";
-import {
-  useCreateProductMutation,
-  useDeleteProductMutation,
-} from "../../../context/api/productApi";
-import { useGetValue } from "../../../hooks/useGetValue";
-import { useNavigate } from "react-router-dom";
-
-const initialState = {
-  title: "",
-  price: "",
-  oldPrice: "",
-  description: "",
-  photos: [],
-};
 
 const CreateProduct = () => {
-  // let navigate = useNavigate();
-  const { formData, setFormData, handleChange } = useGetValue(initialState);
+  const [fileList, setFileList] = useState([]);
+  const [newProduct, setNewProduct] = useState({});
+  const [create, { data, isLoading, isSuccess }] = useCreateProductMutation();
+  const { data: categories } = useGetCategoryQuery();
+  const [form] = Form.useForm();
 
-  // const [createData, { data, isSuccess }] = useCreateProductMutation();
-
-  const handleCreate = (e) => {
-    e.preventDefault();
-    console.log(formData);
-
-    // navigate("/admin/manageProduct");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
   };
 
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     toast.success("Mahsulot yaratildi");
-  //   }
-  // }, [isSuccess]);
+  useEffect(() => {
+    if (isSuccess) {
+      form.resetFields();
+      setFileList([]);
+    }
+  }, [isSuccess, form]);
+
+  const handleFileChange = ({ fileList }) => {
+    setFileList(fileList);
+  };
+
+  const handleSubmit = async (values) => {
+    const formData = new FormData();
+
+    formData.append("title", values.title);
+    formData.append("price", values.price);
+    formData.append("desc", values.desc);
+    formData.append("units", values.units);
+    formData.append("categoryId", values.categoryId);
+    fileList.forEach((file) => formData.append("photos", file.originFileObj));
+
+    await create(formData).unwrap();
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
-    <div className="form">
-      <h2>Create Product</h2>
-      <form onSubmit={handleCreate} className="form__create" action="">
-        <input
-          required
-          value={formData.title}
-          onChange={handleChange}
+    <>
+      <Form
+        name="basic"
+        layout="vertical"
+        className="w-96 max-sm:w-full"
+        labelCol={{
+          span: 8,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={handleSubmit}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Title"
           name="title"
-          placeholder="title"
-          type="text"
-        />
-        <input
-          required
-          value={formData.price}
-          onChange={handleChange}
+          rules={[
+            {
+              required: true,
+              message: "Please input the title!",
+            },
+          ]}
+        >
+          <Input placeholder="Enter title" />
+        </Form.Item>
+
+        <Form.Item
+          label="Description"
+          name="desc"
+          rules={[
+            {
+              required: true,
+              message: "Please input the description!",
+            },
+          ]}
+        >
+          <Input placeholder="Enter description" />
+        </Form.Item>
+
+        <Form.Item
+          label="Price"
           name="price"
-          placeholder="price"
-          type="text"
-        />
-        <input
-          required
-          value={formData.oldPrice}
-          onChange={handleChange}
-          name="oldPrice"
-          placeholder="oldPrice"
-          type="text"
-        />
-        <input
-          required
-          value={formData.description}
-          onChange={handleChange}
-          name="description"
-          placeholder="descreption"
-          type="text"
-        />
-        <input
-          required
-          value={formData.photos}
-          onChange={handleChange}
-          name="photos"
-          placeholder="Images"
-          type="file"
-        />
-        <button>Create</button>
-      </form>
-    </div>
+          rules={[
+            {
+              required: true,
+              message: "Please input the price!",
+            },
+          ]}
+        >
+          <Input placeholder="Enter price" />
+        </Form.Item>
+
+        <Form.Item
+          label="Units"
+          name="units"
+          rules={[
+            {
+              required: true,
+              message: "Please input the units!",
+            },
+          ]}
+        >
+          <Input placeholder="Enter units" />
+        </Form.Item>
+
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+              message: "Please select a category!",
+            },
+          ]}
+        >
+          <Select placeholder="Select a category">
+            {categories?.payload?.map((category) => (
+              <Select.Option key={category.id} value={category?._id}>
+                {category.title}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+
+        <Form.Item>
+          <Upload
+            action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+            listType="picture"
+            multiple
+            beforeUpload={() => false}
+            onChange={handleFileChange}
+            fileList={fileList}
+            defaultFileList={fileList}
+          >
+            <Button type="primary" icon={<UploadOutlined />}>
+              Upload
+            </Button>
+          </Upload>
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            loading={isLoading}
+            className="w-full"
+            type="primary"
+            htmlType="submit"
+          >
+            {isLoading ? "Loading..." : "Create"}
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
-
 export default CreateProduct;

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
 import "./managCategory.scss";
+
+import Modal from "../../../components/Modal/Modal";
+// import EditCategory from "../../../components/edit-category/EditeCategory";
 import {
   useDeleteCategoryMutation,
   useGetCategoryQuery,
 } from "../../../context/api/categoryApi";
-import Modal from "../../../components/Modal/Modal";
-import EditCategory from "../../../components/edit-category/EditeCategory";
 
 const ManageCategory = () => {
   const [show, setShow] = useState(false);
@@ -30,13 +31,13 @@ const ManageCategory = () => {
     <div className="manage__category">
       <h2 className="manage__category__name">Manage Category</h2>
       <div className="manage__category__cards">
-        {data?.map((el) => (
-          <div key={el.id} className="manage__category__card">
+        {data?.payload?.map((el) => (
+          <div key={el._id} className="manage__category__card">
             <h3 className="manage__category__title">{el.title}</h3>
             <div className="manage__category__btns">
               <button
                 className="manage__category__delete"
-                onClick={() => handleDelete(el.id)}
+                onClick={() => handleDelete(el._id)}
               >
                 <RiDeleteBinLine />
               </button>
@@ -52,7 +53,7 @@ const ManageCategory = () => {
       </div>
       {show && selectedCategory && (
         <Modal close={setShow}>
-          <EditCategory data={selectedCategory} close={setShow} />
+          {/* <EditCategory data={selectedCategory} close={setShow} /> */}
         </Modal>
       )}
     </div>

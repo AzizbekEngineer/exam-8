@@ -10,7 +10,9 @@ const Cart = () => {
   console.log(cartData);
   const cartItem = cartData?.map((el) => (
     <div className="cart__item" key={el._id}>
-      <div className="cart__img"></div>
+      <div className="cart__img">
+        <img src={el?.urls?.[0]} alt="" />
+      </div>
       <div className="cart__info">
         <h3 className="cart__title">{el?.title}</h3>
         <p className="cart__desc">{el?.desc}</p>

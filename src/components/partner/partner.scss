@@ -1,35 +1,86 @@
+// .partner {
+//   background-color: black;
+//   padding: 30px 0px;
+//   &__logo {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     gap: 10px;
+//   }
+
+//   @media (max-width: 950px) {
+//     &__logo {
+//       display: flex;
+//       align-items: center;
+//       flex-wrap: wrap;
+//       justify-content: space-between;
+//       gap: 10px;
+//       img {
+//         width: 100px;
+//       }
+//     }
+//   }
+//   @media (max-width: 600px) {
+//     &__logo {
+//       display: flex;
+//       align-items: center;
+//       flex-wrap: wrap;
+//       justify-content: center;
+//       gap: 20px;
+//       img {
+//         width: 100px;
+//       }
+//     }
+//   }
+// }
+
 .partner {
   background-color: black;
   padding: 30px 0px;
+
   &__logo {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    gap: 40px;
+    white-space: nowrap;
+    /* Ensure logos stay in a single line */
+    overflow: hidden;
+    /* Hide the logos that move out of view */
+    animation: scroll 20s linear infinite;
+    /* Infinite scrolling animation */
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+      /* Start from the right side */
+    }
+
+    100% {
+      transform: translateX(-100%);
+      /* Move to the left side */
+    }
   }
 
   @media (max-width: 950px) {
     &__logo {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      img {
-        width: 100px;
-      }
+      gap: 20px;
+      animation: scroll 15s linear infinite;
+    }
+
+    img {
+      width: 100px;
     }
   }
+
   @media (max-width: 600px) {
     &__logo {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      img {
-        width: 100px;
-      }
+      gap: 10px;
+      animation: scroll 10s linear infinite;
+    }
+
+    img {
+      width: 80px;
     }
   }
 }

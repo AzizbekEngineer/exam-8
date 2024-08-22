@@ -1,34 +1,49 @@
-.form {
-  padding: 20px;
+$input-bg-color: white;
+$input-text-color: black;
+$input-border-color: #00000088;
+$input-placeholder-color: rgba(255, 255, 255, 0.5);
 
-  h2 {
-    font-size: 22px;
-    font-weight: 500;
-    padding: 0px 0px 10px;
+.ant-form-item-label>label {
+  color: $input-text-color;
+}
+
+.ant-input,
+.ant-select,
+.ant-option,
+.ant-input-affix-wrapper,
+.ant-upload-list-picture .ant-upload-list-item-name,
+.ant-input-number {
+  background-color: $input-bg-color;
+  color: $input-text-color;
+  border: 1px solid $input-border-color;
+
+  &::placeholder {
+    color: $input-placeholder-color;
   }
 
-  &__create {
-    width: 500px;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 15px;
-    input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #aaa3;
-      border: 1px solid #aaa6;
-      outline: none;
-    }
+  &:hover,
+  &:focus {
+    border-color: $input-border-color;
+  }
+}
 
-    button {
-      background-color: black;
-      border-radius: 6px;
-      border: none;
-      color: white;
-      padding: 10px 30px;
-      width: 200px;
-    }
+.ant-select,
+.ant-option {
+
+  &:hover,
+  &:focus {
+    border-color: $input-border-color;
+  }
+}
+
+.ant-btn-primary {
+  background-color: $input-bg-color;
+  border-color: $input-border-color;
+  color: $input-text-color;
+
+  &:hover,
+  &:focus {
+    background-color: $input-bg-color;
+    border-color: $input-border-color;
   }
 }
