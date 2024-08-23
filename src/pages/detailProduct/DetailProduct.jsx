@@ -15,6 +15,7 @@ const DetailProduct = () => {
   const { id } = useParams();
   const { data } = useGetProductByIdQuery(id);
   const { data: dataProducts } = useGetProductsQuery();
+  const [index, setIndex] = useState(0);
 
   console.log(dataProducts);
 
@@ -35,12 +36,17 @@ const DetailProduct = () => {
         <div className="detail__cards">
           <div className="detail__card__img">
             <div className="detail__card__imgs">
-              <div></div>
-              <div></div>
-              <div></div>
+              {data?.payload?.urls?.map((el, inx) => (
+                <div key={inx}>
+                  <img src={el} alt="" onClick={() => setIndex(inx)} />
+                </div>
+              ))}
             </div>
             <div className="detail__img">
-              <img src={data?.payload?.urls?.[0]} alt={data?.payload?.title} />
+              <img
+                src={data?.payload?.urls?.[index]}
+                alt={data?.payload?.title}
+              />
             </div>
           </div>
           <div className="detail__card__info">
@@ -55,18 +61,27 @@ const DetailProduct = () => {
             </div>
             <div className="detail__card__price">
               <p className="detail__card__price-new">${data?.payload?.price}</p>
-              <p className="detail__card__price-old">
-                ${data?.payload?.oldPrice}
-              </p>
-              <button className="detail__card__price__off">
-                -
-                {(
-                  ((data?.payload?.oldPrice - data?.payload?.price) /
-                    data?.payload?.price) *
-                  100
-                ).toFixed(0)}
-                %
-              </button>
+              {data?.payload?.oldPrice - data?.payload?.price > 0 ? (
+                <p className="products__card__price-old">
+                  ${data?.payload?.oldPrice}
+                </p>
+              ) : (
+                <></>
+              )}
+
+              {data?.payload?.oldPrice - data?.payload?.price > 0 ? (
+                <button className="products__card__price__off">
+                  -
+                  {(
+                    ((data?.payload?.oldPrice - data?.payload?.price) /
+                      data?.payload?.price) *
+                    100
+                  ).toFixed(0)}
+                  %
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
             <p className="detail__desc">{data?.payload?.desc}</p>
             <hr />

@@ -33,10 +33,12 @@ const CreateProduct = () => {
 
     formData.append("title", values.title);
     formData.append("price", values.price);
+    formData.append("oldPrice", values.oldPrice);
     formData.append("desc", values.desc);
     formData.append("units", values.units);
     formData.append("categoryId", values.categoryId);
     fileList.forEach((file) => formData.append("photos", file.originFileObj));
+    console.log(formData);
 
     await create(formData).unwrap();
   };
@@ -51,6 +53,7 @@ const CreateProduct = () => {
         name="basic"
         layout="vertical"
         className="w-96 max-sm:w-full"
+        style={{ padding: "20px" }}
         labelCol={{
           span: 8,
         }}
@@ -97,7 +100,19 @@ const CreateProduct = () => {
             },
           ]}
         >
-          <Input placeholder="Enter price" />
+          <Input placeholder="Enter oldPrice" />
+        </Form.Item>
+        <Form.Item
+          label="Old Price"
+          name="oldPrice"
+          rules={[
+            {
+              required: true,
+              message: "Please input the oldPrice!",
+            },
+          ]}
+        >
+          <Input placeholder="Enter oldPrice" />
         </Form.Item>
 
         <Form.Item
@@ -105,12 +120,15 @@ const CreateProduct = () => {
           name="units"
           rules={[
             {
-              required: true,
-              message: "Please input the units!",
+              message: "Please select a units!",
             },
           ]}
         >
-          <Input placeholder="Enter units" />
+          <Select placeholder="Select a units">
+            <Select.Option value="dona">dona</Select.Option>
+            <Select.Option value="kg">kg</Select.Option>
+            <Select.Option value="litr">litr</Select.Option>
+          </Select>
         </Form.Item>
 
         <Form.Item

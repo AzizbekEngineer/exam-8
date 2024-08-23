@@ -6,26 +6,32 @@
             background: #F0EEED;
             border-radius: 20px;
             position: relative;
+            overflow: hidden;
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 border-radius: 20px;
+                transition: .4s;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
         }
 
         &__img:hover {
 
             .products__card__btns {
-                top: 30px;
+                top: 10px;
             }
         }
 
         &__btns {
             position: absolute;
             top: -100%;
-            right: 30px;
+            right: 15px;
             display: flex;
             gap: 15px;
             transition: .4s;
@@ -95,6 +101,32 @@
             border-radius: 20px;
             font-size: 16px;
             background: rgba(255, 0, 0, 0.432);
+        }
+
+    }
+
+    &__btns {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+
+        button {
+            border: none;
+            background: transparent;
+
+            svg {
+                font-size: 28px;
+            }
+        }
+
+        button:first-child {
+            color: red;
+        }
+
+        button:last-child {
+            color: rgb(72, 228, 72);
         }
     }
 

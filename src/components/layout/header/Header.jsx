@@ -59,7 +59,9 @@ const Header = () => {
             <li className="header__nav__item">Shop</li>
             <li className="header__nav__item">On Sale</li>
             <li className="header__nav__item">New Arrivals</li>
-            <li className="header__nav__item">Brands</li>
+            <li className="header__nav__item">
+              <NavLink to={"/brand"}>Brands</NavLink>
+            </li>
           </ul>
           <div className="header__nav__form">
             <Search />

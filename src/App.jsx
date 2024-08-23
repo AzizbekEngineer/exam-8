@@ -11,6 +11,8 @@ import Admin from "./pages/admin/Admin";
 import CreateProduct from "./pages/admin/createProduct/CreateProduct";
 import CreateCategory from "./pages/admin/createCategory/CreateCategory";
 import ManageCategory from "./pages/admin/manageCategory/ManageCategory";
+import ManageProduct from "./pages/admin/manageProduct/ManageProduct";
+import Brand from "./pages/brand/Brand";
 
 const App = () => {
   return (
@@ -22,12 +24,14 @@ const App = () => {
           <Route path="/product/:id" element={<DetailProduct />} />
           <Route path="/wishlist" element={<WishlistWrapper />} />
           <Route path="/cart" element={<CartWrapper />} />
+          <Route path="/brand" element={<Brand />} />
         </Route>
         <Route path="/" element={<Auth />}>
           <Route path="admin/" element={<Admin />}>
             <Route path="createProduct" element={<CreateProduct />} />
             <Route path="createCategory" element={<CreateCategory />} />
             <Route path="manageCategory" element={<ManageCategory />} />
+            <Route path="manageProduct" element={<ManageProduct />} />
           </Route>
         </Route>
       </Routes>
