@@ -3,9 +3,10 @@ import { NEW_PRODUCTS } from "../../static/index";
 import "./newProducts.scss";
 import Products from "../products/Products";
 import { useGetProductsQuery } from "../../context/api/productApi";
+import Loading from "../loading/Loading";
 
 const NewProducts = () => {
-  const { data } = useGetProductsQuery({ limit: 4 });
+  const { data, isLoading } = useGetProductsQuery({ limit: 4 });
   console.log(data);
 
   return (
@@ -13,9 +14,13 @@ const NewProducts = () => {
       <div className="container">
         <div className="new">
           <h2 className="section-title">NEW ARRIVALS</h2>
-          <div className="new__products">
-            <Products data={data?.payload} />
-          </div>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <div className="new__products">
+              <Products data={data?.payload} />
+            </div>
+          )}
           <button className="view-all__btn">View All</button>
         </div>
       </div>

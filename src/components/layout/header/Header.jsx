@@ -56,9 +56,10 @@ const Header = () => {
             <li onClick={() => setShow(false)} className="header__nav__close">
               <IoCloseSharp />
             </li>
-            <li className="header__nav__item">Shop</li>
+            <li className="header__nav__item">
+              <NavLink to={"/shop"}>Shop</NavLink>
+            </li>
             <li className="header__nav__item">On Sale</li>
-            <li className="header__nav__item">New Arrivals</li>
             <li className="header__nav__item">
               <NavLink to={"/brand"}>Brands</NavLink>
             </li>

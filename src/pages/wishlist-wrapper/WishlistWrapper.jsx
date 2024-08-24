@@ -14,7 +14,7 @@ const WishlistWrapper = () => {
         {wishlist.length ? (
           <div>
             <h2 style={{ textAlign: "center", padding: "20px 0" }}>
-              Sevimlilar 💔💘💖
+              Sevimlilar
             </h2>
             <Wishlist data={wishlist} />
           </div>
@@ -22,6 +22,7 @@ const WishlistWrapper = () => {
           <Empty
             url="https://cdni.iconscout.com/illustration/premium/thumb/empty-wishlist-12057806-9824476.png?f=webp"
             title={"Hali sevimlilar mavjud emas!"}
+            link={"sevimlilarni tanlash!"}
           />
         )}
       </Fragment>

@@ -7,7 +7,7 @@
   left: 0;
   opacity: 0;
   animation: overlay 0.3s forwards;
-  z-index: 10;
+  z-index: 999;
 }
 
 @keyframes overlay {
@@ -29,7 +29,7 @@
   padding: 30px;
   animation: model 0.3s forwards;
   overflow: auto;
-  z-index: 100;
+  z-index: 9999;
 
   &__close {
     position: absolute;

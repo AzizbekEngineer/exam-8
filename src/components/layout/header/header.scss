@@ -16,6 +16,7 @@
       line-height: 18.9px;
       text-align: left;
     }
+
     span {
       font-family: Satoshi;
       font-size: 14px;
@@ -31,6 +32,7 @@
   &__close {
     border: none;
     background-color: transparent;
+
     svg {
       color: white;
       cursor: pointer;
@@ -42,15 +44,18 @@
     &__close {
       display: none;
     }
+
     &__info {
       flex-direction: column;
     }
+
     &__info__desc {
       p {
         color: white;
         font-size: 12px;
         text-align: left;
       }
+
       span {
         font-size: 12px;
       }
@@ -71,7 +76,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 90;
   background-color: white;
 
   &__nav {
@@ -91,6 +96,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+
     img {
       width: 150px;
     }
@@ -126,6 +132,7 @@
   &__nav__btns {
     display: flex;
     gap: 20px;
+
     svg {
       font-size: 18px;
     }
@@ -155,6 +162,7 @@
       align-items: center;
       transition: 0.7s;
     }
+
     &__nav__item {
       line-height: 10px;
     }
@@ -185,6 +193,7 @@
       display: block;
     }
   }
+
   @media (max-width: 340px) {
     &__nav__logo {
       img {
