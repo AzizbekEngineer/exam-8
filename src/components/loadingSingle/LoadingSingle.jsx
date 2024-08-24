@@ -1,5 +1,5 @@
 import React from "react";
-import "./LoadingSingle.scss";
+import "./loadingSingle.scss";
 
 const LoadingSingle = () => {
   return (
