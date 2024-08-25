@@ -14,6 +14,7 @@ import ManageCategory from "./pages/admin/manageCategory/ManageCategory";
 import ManageProduct from "./pages/admin/manageProduct/ManageProduct";
 import Brand from "./pages/brand/Brand";
 import Shop from "./pages/shop/Shop";
+import Profile from "./pages/admin/profile/Profile";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="createCategory" element={<CreateCategory />} />
             <Route path="manageCategory" element={<ManageCategory />} />
             <Route path="manageProduct" element={<ManageProduct />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
         </Route>
       </Routes>

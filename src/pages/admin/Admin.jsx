@@ -10,7 +10,7 @@ const Admin = () => {
     <>
       <div className={`admin ${close ? "close" : ""}`}>
         <Sidebar />
-        <div>
+        <div className="admin__main">
           <AdminHeader setClose={setClose} />
           <Outlet />
         </div>

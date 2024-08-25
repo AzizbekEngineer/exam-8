@@ -1,5 +1,4 @@
 import React from "react";
-import { NEW_PRODUCTS } from "../../static/index";
 import "./newProducts.scss";
 import Products from "../products/Products";
 import { useGetProductsQuery } from "../../context/api/productApi";

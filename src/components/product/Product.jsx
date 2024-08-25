@@ -15,13 +15,19 @@ const Product = ({ product, isBtn }) => {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.value);
   const cartData = useSelector((state) => state.cart.value);
-  const [delateProduct] = useDeleteProductMutation();
+  const [deleteProduct] = useDeleteProductMutation();
 
   const handleDelete = (id) => {
-    if (window.confirm("ochirasizmi")) {
-      delateProduct(id);
+    if (window.confirm("Are you sure you want to delete?")) {
+      deleteProduct(id);
     }
   };
+
+  // Calculate discount percentage
+  const discountPercentage =
+    product.oldPrice && product.oldPrice > product.price
+      ? ((product.oldPrice - product.price) / product.oldPrice) * 100
+      : 0;
 
   return (
     <div className="products__card">
@@ -29,9 +35,7 @@ const Product = ({ product, isBtn }) => {
         <Link to={`/product/${product?._id}`}>
           <img src={product?.urls?.[0]} alt="card-img" />
         </Link>
-        {isBtn ? (
-          <></>
-        ) : (
+        {!isBtn && (
           <div className="products__card__btns">
             <button onClick={() => dispatch(toggleHeart(product))}>
               {wishlist.some((el) => el._id === product?._id) ? (
@@ -68,26 +72,16 @@ const Product = ({ product, isBtn }) => {
         </div>
         <div className="products__card__price">
           <p className="products__card__price-new">${product.price}</p>
-          {product.oldPrice - product.price > 0 ? (
-            <p className="products__card__price-old">${product.oldPrice}</p>
-          ) : (
-            <></>
-          )}
-
-          {product.oldPrice - product.price > 0 ? (
-            <button className="products__card__price__off">
-              -
-              {(
-                ((product.oldPrice - product.price) / product.price) *
-                100
-              ).toFixed(0)}
-              %
-            </button>
-          ) : (
-            <></>
+          {discountPercentage > 0 && (
+            <>
+              <p className="products__card__price-old">${product.oldPrice}</p>
+              <button className="products__card__price__off">
+                -{discountPercentage.toFixed(0)}%
+              </button>
+            </>
           )}
         </div>
-        {isBtn ? (
+        {isBtn && (
           <div className="products__btns">
             <button onClick={() => handleDelete(product._id)}>
               <MdDeleteForever />
@@ -96,8 +90,6 @@ const Product = ({ product, isBtn }) => {
               <MdEdit />
             </button>
           </div>
-        ) : (
-          <></>
         )}
       </div>
     </div>

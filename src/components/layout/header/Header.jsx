@@ -15,7 +15,10 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const [close, setClose] = useState(true);
   const [show, setShow] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   let isLogin = useSelector((state) => state.auth.token);
+  const cartData = useSelector((state) => state.cart.value);
+  const wishlistData = useSelector((state) => state.wishlist.value);
   return (
     <>
       {close ? (
@@ -67,15 +70,25 @@ const Header = () => {
           <div className="header__nav__form">
             <Search />
           </div>
+
           <div className="header__nav__btns">
             <div className="header__nav__btns-search">
-              <IoSearchOutline />
+              <IoSearchOutline onClick={() => setShowSearch((prev) => !prev)} />
             </div>
-            <NavLink to={"/wishlist"}>
+            {showSearch ? (
+              <div className="header__nav__form__new">
+                <Search />
+              </div>
+            ) : (
+              <></>
+            )}
+            <NavLink to={"/wishlist"} className="header__likes">
               <FaRegHeart />
+              <sup>{wishlistData?.length ? wishlistData?.length : 0}</sup>
             </NavLink>
-            <NavLink to={"/cart"}>
+            <NavLink to={"/cart"} className="header__likes">
               <BsCart2 />
+              <sup>{cartData?.length ? cartData?.length : 0}</sup>
             </NavLink>
             <NavLink to={isLogin ? "/admin/createProduct" : "/login"}>
               <VscAccount />

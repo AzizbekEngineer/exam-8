@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Partner />
+      {/* <Partner /> */}
       <NewProducts />
       <TopProducts />
       <Browse />

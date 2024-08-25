@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: white;
 
     &__btn {
         border: none;
@@ -13,8 +14,15 @@
         font-weight: bold;
     }
 
-    p {
-        font-size: 18px;
-        color: black;
+
+
+    &__profile {
+        padding-right: 20px;
+        cursor: pointer;
+
+        svg {
+            font-size: 32px;
+            color: black;
+        }
     }
 }

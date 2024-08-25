@@ -86,6 +86,22 @@
     justify-content: space-between;
   }
 
+  &__likes {
+    position: relative;
+
+    sup {
+
+      position: absolute;
+      top: -10px;
+      padding: 2px 6px;
+      right: -12px;
+      background: black;
+      color: white;
+      font-size: 12px;
+      border-radius: 50%;
+    }
+  }
+
   &__nav__link {
     display: flex;
     align-items: center;
@@ -127,6 +143,10 @@
     align-items: center;
     justify-content: center;
     display: none;
+
+    svg:hover {
+      cursor: pointer;
+    }
   }
 
   &__nav__btns {
@@ -178,11 +198,22 @@
     &__show {
       left: 0;
     }
+
+
   }
 
-  @media (max-width: 470px) {
+  @media (max-width: 730px) {
     &__nav__form {
       display: none;
+    }
+
+    &__nav__form__new {
+      position: fixed;
+      padding: 0 10px;
+      top: 3px;
+      left: 0;
+      width: 100%;
+      background: white;
     }
 
     &__nav {

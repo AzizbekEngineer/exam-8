@@ -18,7 +18,7 @@ export const adminApi = api.injectEndpoints({
     }),
     getProfile: build.query({
       query: () => ({
-        url: "/profile",
+        url: "/admin/profile",
       }),
       providesTags: ["Profile"],
     }),

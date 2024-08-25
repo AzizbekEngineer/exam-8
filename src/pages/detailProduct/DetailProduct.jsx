@@ -140,7 +140,7 @@ const DetailProduct = () => {
           {activeTab === "faqs" && <Faqs />}
         </div>
         <h3 className="detail__like__title">You might also like</h3>
-        <div className="detail__products">
+        <div className="top__products">
           <Products data={dataProducts?.payload} />
         </div>
       </div>
