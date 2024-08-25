@@ -12,13 +12,14 @@ import { NavLink } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import Loading from "../../components/loading/Loading";
 
 const Shop = () => {
   const [categoryValue, setCategoryValue] = useState("");
 
   let limit = 4;
   const [page, setPage] = React.useState(1);
-  const { data } = useGetProductsQuery({
+  const { data, isLoading } = useGetProductsQuery({
     limit,
     skip: page,
     category: categoryValue,
@@ -39,10 +40,9 @@ const Shop = () => {
       <data
         value={el._id}
         onClick={(e) => setCategoryValue(e.target.value)}
-        className="shop__left-item"
+        className="shop__item"
       >
         {el.title}
-        <FaChevronRight />
       </data>
     </li>
   ));
@@ -63,10 +63,9 @@ const Shop = () => {
                   <data
                     value=""
                     onClick={(e) => setCategoryValue(e.target.value)}
-                    className="shop__left-item"
+                    className="shop__item"
                   >
                     All
-                    <FaChevronRight />
                   </data>
                 </li>
                 {categoryItems}
@@ -90,9 +89,13 @@ const Shop = () => {
           </div>
           <div className="shop__product__box">
             <h3>Casual</h3>
-            <div className="shop__products">
-              <Products data={data?.payload} />
-            </div>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <div className="shop__products">
+                <Products data={data?.payload} />
+              </div>
+            )}
             <Stack spacing={2}>
               <Typography>Page: {page}</Typography>
               <Pagination

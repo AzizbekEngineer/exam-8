@@ -11,7 +11,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { add } from "../../context/slice/cartSlice";
 import { useDeleteProductMutation } from "../../context/api/productApi";
 
-const Product = ({ product, isBtn }) => {
+const Product = ({ product, isBtn, setEditProduct }) => {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.value);
   const cartData = useSelector((state) => state.cart.value);
@@ -86,7 +86,7 @@ const Product = ({ product, isBtn }) => {
             <button onClick={() => handleDelete(product._id)}>
               <MdDeleteForever />
             </button>
-            <button>
+            <button onClick={() => setEditProduct(product)}>
               <MdEdit />
             </button>
           </div>

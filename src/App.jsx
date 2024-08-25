@@ -1,20 +1,30 @@
-import React, { Fragment } from "react";
+import React, { Fragment, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/home/Home";
-import DetailProduct from "./pages/detailProduct/DetailProduct";
-import WishlistWrapper from "./pages/wishlist-wrapper/WishlistWrapper";
-import CartWrapper from "./pages/cart-wrapper/CartWrapper";
-import Login from "./pages/login/Login";
-import Auth from "./pages/auth/Auth";
-import Admin from "./pages/admin/Admin";
-import CreateProduct from "./pages/admin/createProduct/CreateProduct";
-import CreateCategory from "./pages/admin/createCategory/CreateCategory";
-import ManageCategory from "./pages/admin/manageCategory/ManageCategory";
-import ManageProduct from "./pages/admin/manageProduct/ManageProduct";
-import Brand from "./pages/brand/Brand";
-import Shop from "./pages/shop/Shop";
-import Profile from "./pages/admin/profile/Profile";
+const Home = lazy(() => import("./pages/home/Home"));
+const Layout = lazy(() => import("./components/layout/Layout"));
+const DetailProduct = lazy(() => import("./pages/detailProduct/DetailProduct"));
+const WishlistWrapper = lazy(() =>
+  import("./pages/wishlist-wrapper/WishlistWrapper")
+);
+const CartWrapper = lazy(() => import("./pages/cart-wrapper/CartWrapper"));
+const Login = lazy(() => import("./pages/login/Login"));
+const Auth = lazy(() => import("./pages/auth/Auth"));
+const Admin = lazy(() => import("./pages/admin/Admin"));
+const CreateProduct = lazy(() =>
+  import("./pages/admin/createProduct/CreateProduct")
+);
+const CreateCategory = lazy(() =>
+  import("./pages/admin/createCategory/CreateCategory")
+);
+const ManageCategory = lazy(() =>
+  import("./pages/admin/manageCategory/ManageCategory")
+);
+const ManageProduct = lazy(() =>
+  import("./pages/admin/manageProduct/ManageProduct")
+);
+const Brand = lazy(() => import("./pages/brand/Brand"));
+const Shop = lazy(() => import("./pages/shop/Shop"));
+const Profile = lazy(() => import("./pages/admin/profile/Profile"));
 
 const App = () => {
   return (

@@ -1,5 +1,9 @@
 .products {
     &__card {
+        background: white;
+        border-radius: 20px;
+        padding: 15px;
+
         &__img {
             overflow: hidden;
             height: 290px;

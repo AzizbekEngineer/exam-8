@@ -51,4 +51,24 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
+
+    @media (max-width:1250px) {
+        &__products {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width:930px) {
+        &__products {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    @media (max-width:660px) {
+        &__cards {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+
+    }
 }

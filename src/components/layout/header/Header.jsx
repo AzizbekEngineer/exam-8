@@ -19,6 +19,11 @@ const Header = () => {
   let isLogin = useSelector((state) => state.auth.token);
   const cartData = useSelector((state) => state.cart.value);
   const wishlistData = useSelector((state) => state.wishlist.value);
+
+  const handleOverlayClick = () => {
+    setShow(false);
+  };
+
   return (
     <>
       {close ? (
@@ -27,7 +32,7 @@ const Header = () => {
             <div></div>
             <div className="header__top__info__desc">
               <p>
-                Sign up and get 20% off to your first order.{" "}
+                Sign up and get 20% off your first order.{" "}
                 <span>Sign Up Now</span>
               </p>
             </div>
@@ -96,6 +101,10 @@ const Header = () => {
           </div>
         </nav>
       </header>
+      <div
+        className={`header__overlay ${show ? "header__overlay__show" : ""}`}
+        onClick={handleOverlayClick}
+      ></div>
     </>
   );
 };
